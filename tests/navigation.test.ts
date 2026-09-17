@@ -30,12 +30,16 @@ beforeEach(() => {
 });
 
 describe('頁面與互動', () => {
-  it('首頁可以進入全部十節，每頁呈現完整活動與清單', () => {
+  it('首頁可以進入全部十節，每頁呈現固定教學結構與清單', () => {
     const links = [...document.querySelectorAll<HTMLAnchorElement>('.lesson-card')].map((link) => link.hash);
     expect(links).toHaveLength(10);
     for (const hash of links) {
       navigate(hash);
-      expect(document.querySelector('.lesson-header h1')?.textContent).toBe(lessons.find((lesson) => hash.endsWith(lesson.id))!.title);
+      const lesson = lessons.find((item) => hash.endsWith(item.id))!;
+      expect(document.querySelector('.lesson-header h1')?.textContent).toBe(lesson.title);
+      expect(document.querySelectorAll('.objective-list li')).toHaveLength(3);
+      expect(document.querySelectorAll('.concept-section .concept-grid > div').length).toBeGreaterThanOrEqual(2);
+      expect(document.querySelector('.demo-section .example')).not.toBeNull();
       expect(document.querySelectorAll('.activity-section li')).toHaveLength(3);
       expect(document.querySelectorAll('.checklist input')).toHaveLength(3);
       expect(document.querySelector('.completion-section')).not.toBeNull();
@@ -92,10 +96,16 @@ describe('頁面與互動', () => {
   it('流程圖可被輔助技術辨識，外部工具採新分頁且保護 opener', () => {
     navigate('#/lesson/2-1');
     expect(document.querySelector('svg[role="img"]')?.getAttribute('aria-label')).toContain('判斷');
-    navigate('#/lesson/3-1');
+    navigate('#/lesson/3-3');
     const resource = document.querySelector<HTMLAnchorElement>('.resource-link')!;
     expect(resource.target).toBe('_blank');
     expect(resource.rel).toContain('noopener');
+  });
+
+  it('首頁明確標示所有任務在課堂中完成', () => {
+    navigate('#/');
+    expect(document.body.textContent).toContain('不安排課後繳交');
+    expect(document.body.textContent).toContain('課堂中完成');
   });
 
   it('儲存失敗會保留本次勾選並顯示錯誤提示', () => {
