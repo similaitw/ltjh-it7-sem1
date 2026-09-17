@@ -1,6 +1,7 @@
 import './handbook.css';
 import { chapters, lessons } from './content';
 import { guideByLesson, pdfSources, type SourceRef, type StudyGuide } from './selfStudy';
+import { lessonVisualHtml } from './lessonVisuals';
 
 const sourceMap = Object.fromEntries(pdfSources.map((source) => [source.id, source]));
 
@@ -60,6 +61,7 @@ function selfStudyHtml(guide: StudyGuide) {
   return `<section class="self-study" aria-labelledby="self-study-title-${guide.lessonId}">
     <div class="self-study-header"><div><p class="eyebrow">PDF SELF-STUDY HANDBOOK</p><h2 id="self-study-title-${guide.lessonId}">完整自學講義</h2><p>依備課 PDF、附錄與教用習作重新整理。先理解，再照步驟實作，最後用練習檢查自己。</p></div><span class="self-study-badge">單元 ${guide.lessonId}</span></div>
     <div class="study-first"><h3>開始前，先知道這些</h3><ul>${guide.learnFirst.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>
+    ${lessonVisualHtml(guide.lessonId)}
     <div class="study-chapters">${guide.sections.map((section, index) => `<details class="study-block" ${index < 2 ? 'open' : ''}><summary>${escapeHtml(section.title)}</summary><div class="study-block-body">${section.intro ? `<p class="study-block-intro">${escapeHtml(section.intro)}</p>` : ''}<ul>${section.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul></div></details>`).join('')}</div>
     <div class="study-do"><div class="study-steps"><h3>跟著做｜清楚步驟</h3><ol>${guide.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol></div><div class="study-practice"><h3>自己試試看</h3><ul>${guide.practice.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div></div>
     <div class="pdf-source-box"><h3>對照 PDF 原始來源</h3><div class="pdf-source-list">${sourceRows(guide.sourceRefs)}</div></div>
