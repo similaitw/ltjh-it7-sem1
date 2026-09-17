@@ -6,6 +6,8 @@
 
 - Production：https://ltjh-it7-sem1.vercel.app
 - 完整自學講義：https://ltjh-it7-sem1.vercel.app/#/handbook
+- App Inventor 延伸：https://ltjh-it7-sem1.vercel.app/#/appendix/app-inventor
+- 教用習作練習室：https://ltjh-it7-sem1.vercel.app/#/practice-lab
 - Vercel 專案：`ltjh-it7-sem1`
 - GitHub：`similaitw/ltjh-it7-sem1`
 
@@ -31,6 +33,8 @@
 5. 原 PDF 對照頁碼與內容說明
 
 網站不以整頁掃描方式重貼 PDF，而是將章節知識點、例題類型、操作流程、補充資源、參考解答與習作方向重新整理成適合七年級學生自學的內容；每節保留 PDF 頁碼，方便教師核對。
+
+三章 10 個正式單元都已加入網站原生圖解：第一章以生活科技、資訊議題與查證流程整理；第二章以流程圖符號、Scratch 積木、IPO、座標與畫筆呈現；第三章以專題流程、Google 工具選擇、搜尋語法、文件／試算表與簡報故事線呈現。附錄與教用習作也各有獨立自學頁。
 
 ## 課程架構
 
@@ -75,6 +79,8 @@ npm run preview      # 本機預覽 production build
 
 - 首頁：`/#/`
 - 完整講義：`/#/handbook`
+- App Inventor 附錄：`/#/appendix/app-inventor`
+- 教用習作練習室：`/#/practice-lab`
 - 單元：`/#/lesson/2-1`
 
 ## 維護流程
@@ -83,12 +89,16 @@ npm run preview      # 本機預覽 production build
 
 - `src/content.ts`：三章十節課程核心內容與課堂活動
 - `src/selfStudy.ts`：六冊 PDF 轉寫的完整自學講義、步驟、練習與來源頁碼
-- `src/handbookEnhancer.ts`：完整講義入口、來源地圖與單元自學講義整合
+- `src/handbookEnhancer.ts`：完整講義入口、來源地圖、延伸頁路由與單元自學講義整合
+- `src/lessonVisuals.ts`：10 個單元的網站原生圖解
+- `src/supplementPages.ts`：App Inventor 附錄與教用習作實作練習頁
 - `src/handbook.css`：自學講義版面與手機響應式樣式
 - `src/main.ts`：首頁、課程頁、流程圖、導覽與互動
 - `src/progress.ts`：進度驗證、保存、重設與完成判定
 - `src/style.css`：主站視覺樣式與響應式版面
 - `tests/selfStudy.test.ts`：六冊 272 頁來源與十單元自學講義完整性測試
+- `tests/lessonVisuals.test.ts`：10 個單元原生圖解與關鍵內容測試
+- `tests/supplementPages.test.ts`：附錄與教用習作自學頁測試
 - `tests/progress.test.ts`：內容與進度單元測試
 - `tests/navigation.test.ts`：十節課程導覽、勾選、重設、例外與可及性互動測試
 
