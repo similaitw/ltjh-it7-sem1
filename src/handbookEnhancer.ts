@@ -2,6 +2,7 @@ import './handbook.css';
 import { chapters, lessons } from './content';
 import { guideByLesson, pdfSources, type SourceRef, type StudyGuide } from './selfStudy';
 import { lessonVisualHtml } from './lessonVisuals';
+import { appInventorAppendixHtml, practiceLabHtml } from './supplementPages';
 
 const sourceMap = Object.fromEntries(pdfSources.map((source) => [source.id, source]));
 
@@ -102,7 +103,24 @@ function handbookHtml() {
     const guide = guideByLesson[lesson.id];
     return `<article class="handbook-unit"><span class="handbook-unit-id">${lesson.id}</span><div><h3>${escapeHtml(lesson.title)}</h3><p>${escapeHtml(chapter?.title ?? '')} · ${guide?.sections.length ?? 0} 組深入講解 · ${guide?.steps.length ?? 0} 個實作步驟 · ${guide?.practice.length ?? 0} 組練習</p></div><a href="#/lesson/${lesson.id}">進入講義 →</a></article>`;
   }).join('');
-  return `<div class="handbook-page"><a class="back-link" href="#/">← 回到課程總覽</a><section class="handbook-hero"><p class="eyebrow">COMPLETE SELF-STUDY HANDBOOK</p><h1>七上資訊科技・完整自學講義</h1><p>把備課資料、附錄與教用習作轉成學生可以自己讀懂的學習路線。每個概念都放回對應單元，用「先懂概念 → 看例子 → 跟著做 → 自己練習 → 對照 PDF 頁碼」的方式學習。</p><div class="handbook-stats"><span>6 冊 PDF</span><span>${totalPages} 頁來源</span><span>3 大章</span><span>10 個單元</span><span>附錄＋習作納入</span></div></section><section class="source-coverage"><h2>六冊 PDF 全部納入索引</h2><p>以下不是只列課文頁：章節規劃、教學補充、參考解答、詞彙、App Inventor 附錄、教用習作與運算思維桌遊，都保留在網站的來源地圖中。</p><div class="source-card-grid">${sourceCards}</div></section><section class="handbook-lessons"><h2>依單元開始自學</h2><p>進入任一單元後，「完整自學講義」會出現在原本課堂任務之前。前兩段預設展開，其他主題可逐段打開，避免一次看到太多文字。</p><div class="handbook-unit-list">${unitCards}</div></section><aside class="handbook-note"><strong>整理方式：</strong>網站保留教材的知識點、例題類型、操作流程與補充內容，但改寫成學生自學語氣與清楚步驟；原始 PDF 頁碼會留在每節最下方，方便教師回頭核對。</aside></div>`;
+  return `<div class="handbook-page"><a class="back-link" href="#/">← 回到課程總覽</a><section class="handbook-hero"><p class="eyebrow">COMPLETE SELF-STUDY HANDBOOK</p><h1>七上資訊科技・完整自學講義</h1><p>把備課資料、附錄與教用習作轉成學生可以自己讀懂的學習路線。每個概念都放回對應單元，用「先懂概念 → 看例子 → 跟著做 → 自己練習 → 對照 PDF 頁碼」的方式學習。</p><div class="handbook-stats"><span>6 冊 PDF</span><span>${totalPages} 頁來源</span><span>3 大章</span><span>10 個單元</span><span>附錄＋習作納入</span></div></section><section class="source-coverage"><h2>六冊 PDF 全部納入索引</h2><p>以下不是只列課文頁：章節規劃、教學補充、參考解答、詞彙、App Inventor 附錄、教用習作與運算思維桌遊，都保留在網站的來源地圖中。</p><div class="source-card-grid">${sourceCards}</div></section><section class="handbook-lessons"><h2>依單元開始自學</h2><p>進入任一單元後，「完整自學講義」會出現在原本課堂任務之前。前兩段預設展開，其他主題可逐段打開，避免一次看到太多文字。</p><div class="handbook-unit-list">${unitCards}</div></section><section class="handbook-extensions"><h2>附錄與習作也可以直接學</h2><p>六冊教材不只放在來源索引；附錄與習作另做成可直接閱讀、操作的延伸頁。</p><div class="extension-grid"><a href="#/appendix/app-inventor"><span>附錄</span><h3>App Inventor 延伸自學</h3><p>介面、模擬器、重複加法／乘法、四則運算、文字重複與 1～N 累加。</p><b>開始學習 →</b></a><a href="#/practice-lab"><span>習作</span><h3>教用習作・實作練習室</h3><p>生活討論、Scratch 動畫與繪圖、公共自行車 CSV、海霸尋寶運算思維。</p><b>進入練習 →</b></a></div></section><aside class="handbook-note"><strong>整理方式：</strong>網站保留教材的知識點、例題類型、操作流程與補充內容，但改寫成學生自學語氣與清楚步驟；原始 PDF 頁碼會留在每節最下方，方便教師回頭核對。</aside></div>`;
+}
+
+function renderSupplementRoute() {
+  const main = document.querySelector<HTMLElement>('#main');
+  if (!main) return false;
+  if (location.hash === '#/appendix/app-inventor') {
+    main.innerHTML = appInventorAppendixHtml();
+    document.title = 'App Inventor 延伸自學｜資訊探險室・七上資訊科技';
+  } else if (location.hash === '#/practice-lab') {
+    main.innerHTML = practiceLabHtml();
+    document.title = '教用習作・實作練習室｜資訊探險室・七上資訊科技';
+  } else {
+    return false;
+  }
+  main.focus({ preventScroll: true });
+  window.scrollTo(0, 0);
+  return true;
 }
 
 function renderHandbookRoute() {
@@ -117,6 +135,7 @@ function renderHandbookRoute() {
 
 function enhance() {
   injectNavigation();
+  if (renderSupplementRoute()) return;
   if (location.hash === '#/handbook') {
     renderHandbookRoute();
     return;
