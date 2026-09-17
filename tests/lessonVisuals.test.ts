@@ -2,14 +2,29 @@ import { describe, expect, it } from 'vitest';
 import { lessonVisualHtml, visualLessonIds } from '../src/lessonVisuals';
 
 describe('自學講義原生圖解', () => {
-  it('Scratch 與 Google 專題共七個實作單元有圖解', () => {
-    expect(visualLessonIds).toEqual(['2-2', '2-3', '2-4', '3-1', '3-2', '3-3', '3-4']);
+  it('三章十個單元都有原生圖解', () => {
+    expect(visualLessonIds).toEqual(['1-1', '1-2', '2-1', '2-2', '2-3', '2-4', '3-1', '3-2', '3-3', '3-4']);
   });
 
   it.each(visualLessonIds)('%s 圖解包含可辨識標題且不是空內容', (lessonId) => {
     const html = lessonVisualHtml(lessonId);
     expect(html).toContain('guided-visual');
     expect(html.length).toBeGreaterThan(300);
+  });
+
+  it('1-1 以六面向與過去現在未來整理生活科技', () => {
+    const html = lessonVisualHtml('1-1');
+    for (const phrase of ['食', '衣', '住', '行', '育', '樂', '過去', '現在', '未來']) expect(html).toContain(phrase);
+  });
+
+  it('1-2 有資料、資安、著作與媒體查證流程', () => {
+    const html = lessonVisualHtml('1-2');
+    for (const phrase of ['資料／隱私', '資訊安全', '著作權', '媒體判讀', '找第二個可信來源']) expect(html).toContain(phrase);
+  });
+
+  it('2-1 有四種流程圖基本符號與語言層次', () => {
+    const html = lessonVisualHtml('2-1');
+    for (const phrase of ['開始／結束', '處理', '輸入／輸出', '決策', '機器語言', '組合語言', '高階語言']) expect(html).toContain(phrase);
   });
 
   it('2-2 清楚呈現綠旗、重複、移動、造型與等待', () => {
