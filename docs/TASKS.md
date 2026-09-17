@@ -23,20 +23,35 @@
 - [x] CI 全部通過
 - [x] 完成 ChatGPT-first PR review，修正阻擋問題並 squash merge 到 `main`
 
+### M2.1 — Vercel production 技術驗收
+- [x] 建立／綁定 Vercel 專案 `ltjh-it7-sem1`
+- [x] Framework 確認為 Vite、Node.js 24.x
+- [x] production deployment 為 READY
+- [x] 正式網址 `https://ltjh-it7-sem1.vercel.app` 回應 HTTP 200
+- [x] 正式 HTML 正確載入 Vite production JS/CSS bundle
+- [x] hash 課程路由已由 DOM 測試涵蓋，無需伺服器 rewrite
+- [x] checklist、localStorage 保存、重設與儲存失敗處理已有單元／DOM 測試
+- [x] Vercel 最近一小時無 runtime error cluster
+- [x] README 更新正式網址、正確課綱與 ChatGPT-first 維護流程
+
 ## Current Task
 
-### M2.1 — Vercel production 與跨裝置驗收
-由 ChatGPT-first 直接處理；若 Vercel 需要建立新專案或 GitHub 綁定而目前連接器無法建立，才需要使用者在 Vercel 介面完成一次性連接。
+### M2.2 — 實機視覺 smoke test
+程式層的 responsive CSS、導覽與互動測試均已通過；以下兩項屬於真實瀏覽器畫面驗收，需以手機或桌機實際打開 production 確認。
 
 ### Acceptance
-- [ ] 建立／綁定 Vercel 專案 `ltjh-it7-sem1`
-- [ ] production deployment READY
-- [ ] 正式網址可直接開啟首頁與 hash 課程路由
-- [ ] 375px 手機版無水平捲動
-- [ ] 桌機／投影版章節導覽可用
-- [ ] checklist、重新整理保存與重設進度皆正常
+- [ ] 375px 手機版首頁與課程頁無水平捲動、文字不被裁切
+- [ ] 桌機／投影版側欄、章節切換與流程圖顯示正常
+- [ ] production 實際勾選一節 → 重新整理仍保留 → 重設後歸零
 
 ## Next
 
 ### M3 — 教師課堂操作模式
-規劃教師投影／授課模式、單節課流程提示與全班進度檢核；不改變學生端「不安排課後繳交」原則。
+由 ChatGPT-first 優先直接開發；只有需要本機環境或 ChatGPT 無法完成時才交由 Codex / Chat2Code Runner。
+
+規劃內容：
+- 投影／授課模式：放大單節課重點、隱藏不必要導覽
+- 單節課流程提示：導入、講解、示範、學生實作、檢核
+- 教師快速切換上一節／下一節與返回章節
+- 全班進度檢核以「教師現場確認」為主，不建立學生帳號、不要求課後繳交
+- 維持學生端 localStorage，不蒐集個資、不新增後端登入需求
