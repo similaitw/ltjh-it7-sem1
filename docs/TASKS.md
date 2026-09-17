@@ -25,7 +25,7 @@
 - [x] 每個單元固定呈現：本節目標、重點教學、示範／例子、課堂任務、完成條件、課堂檢核
 - [x] 首頁明確標示所有任務均在課堂中完成，不安排課後繳交
 - [x] 新增 GitHub Actions CI：test、typecheck、lint、build
-- [ ] CI 全部通過
+- [x] CI 全部通過
 - [ ] 完成 PR review，修正阻擋問題後合併 main
 - [ ] 部署 Vercel production 並完成手機／桌機驗收
 
