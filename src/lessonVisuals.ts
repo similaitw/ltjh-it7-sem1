@@ -108,7 +108,54 @@ function slidesVisual() {
   </section>`;
 }
 
+
+function lifeTechVisual() {
+  return `<section class="guided-visual" aria-labelledby="visual-1-1">
+    <div class="guided-visual-heading"><p class="eyebrow">生活中的資訊科技</p><h3 id="visual-1-1">食、衣、住、行、育、樂：用「過去 → 現在 → 未來」觀察</h3><p>不要只背產品名稱；要看科技用了什麼資料、解決什麼需求，也要想一個可能風險。</p></div>
+    <div class="life-tech-grid">
+      <div><strong>食</strong><span>紙本菜單 → 線上點餐／送餐機器人 → AI 推薦餐點</span></div>
+      <div><strong>衣</strong><span>反覆試穿 → AR／智慧鏡 → 個人化搭配</span></div>
+      <div><strong>住</strong><span>手動家電 → IoT 遠端控制 → 自動情境調整</span></div>
+      <div><strong>行</strong><span>紙本地圖 → 即時導航／輔助駕駛 → 更高程度自動化</span></div>
+      <div><strong>育</strong><span>固定教室 → 線上學習／即時評量 → AI 輔助回饋</span></div>
+      <div><strong>樂</strong><span>螢幕＋控制器 → VR 沉浸 → 更多感測互動</span></div>
+    </div>
+    <div class="timeline-question"><span>過去：哪裡不方便？</span><b>→</b><span>現在：用了哪些資料與設備？</span><b>→</b><span>未來：加入 AI 後會更方便嗎？</span><b>→</b><span>風險：隱私、錯誤判斷或安全？</span></div>
+  </section>`;
+}
+
+function digitalIssuesVisual() {
+  return `<section class="guided-visual" aria-labelledby="visual-1-2">
+    <div class="guided-visual-heading"><p class="eyebrow">遇到網路事件怎麼判斷</p><h3 id="visual-1-2">先分類，再判斷，再採取行動</h3></div>
+    <div class="issue-grid">
+      <div><strong>資料／隱私</strong><span>電話、照片、位置能不能公開？</span></div>
+      <div><strong>資訊安全</strong><span>連結、檔案、帳號是不是可信？</span></div>
+      <div><strong>著作權</strong><span>圖片、音樂、文章能不能直接拿來用？</span></div>
+      <div><strong>倫理／法律</strong><span>這個行為會不會傷害他人或違反規範？</span></div>
+      <div><strong>媒體判讀</strong><span>來源、日期、證據、其他可靠來源是否一致？</span></div>
+    </div>
+    <div class="factcheck-flow"><span>看到訊息</span><b>→</b><span>找原始來源</span><b>→</b><span>看日期與證據</span><b>→</b><span>找第二個可信來源</span><b>→</b><span>再決定是否分享</span></div>
+  </section>`;
+}
+
+function algorithmVisual() {
+  return `<section class="guided-visual" aria-labelledby="visual-2-1">
+    <div class="guided-visual-heading"><p class="eyebrow">演算法與流程圖</p><h3 id="visual-2-1">先寫步驟，再換成流程圖符號</h3><p>每一條箭頭都要能走到下一步；遇到判斷時，分支要標清楚「是／否」。</p></div>
+    <div class="flow-symbol-grid">
+      <div><span class="symbol terminal-shape">開始／結束</span><small>流程的起點與終點</small></div>
+      <div><span class="symbol process-shape">處理</span><small>計算或執行動作</small></div>
+      <div><span class="symbol io-shape">輸入／輸出</span><small>取得資料或呈現結果</small></div>
+      <div><span class="symbol decision-shape">決策</span><small>依條件走不同分支</small></div>
+    </div>
+    <div class="algorithm-steps"><span>1 界定問題</span><b>→</b><span>2 列出輸入／輸出</span><b>→</b><span>3 寫處理步驟</span><b>→</b><span>4 畫流程圖</span><b>→</b><span>5 用兩種情境測試</span></div>
+    <div class="language-levels"><span>機器語言：0／1，最接近硬體</span><span>組合語言：助記符號，仍貼近處理器</span><span>高階語言：較接近人的表達與問題解決</span></div>
+  </section>`;
+}
+
 const visuals: Record<string, () => string> = {
+  '1-1': lifeTechVisual,
+  '1-2': digitalIssuesVisual,
+  '2-1': algorithmVisual,
   '2-2': scratchBasicsVisual,
   '2-3': scratchCalcVisual,
   '2-4': scratchDrawVisual,
