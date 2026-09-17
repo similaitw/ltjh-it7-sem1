@@ -10,12 +10,7 @@
 - [x] 建立基本測試、typecheck、lint、production build 指令
 - [x] 建立 PR #1
 
-## Current Task
-
 ### M2 — 教材對齊、課堂結構與 CI 驗收
-由 ChatGPT-first 直接處理；只有需要本機環境或 ChatGPT 無法完成時才交由 Codex / Chat2Code Runner。
-
-### Acceptance
 - [x] 第一章改為「資訊科技與人類生活」「資訊科技及其相關議題」，涵蓋食衣住行育樂、AI、資料保護、資訊安全、著作權、倫理、法律與媒體判讀
 - [x] 2-1 對齊演算法、流程圖、機器語言、組合語言與高階語言
 - [x] 2-2 對齊 Scratch 基礎操作與「角色走路」動畫
@@ -26,8 +21,20 @@
 - [x] 首頁明確標示所有任務均在課堂中完成，不安排課後繳交
 - [x] 新增 GitHub Actions CI：test、typecheck、lint、build
 - [x] CI 全部通過
-- [ ] 完成 PR review，修正阻擋問題後合併 main
-- [ ] 部署 Vercel production 並完成手機／桌機驗收
+- [x] 完成 ChatGPT-first PR review，修正阻擋問題並 squash merge 到 `main`
+
+## Current Task
+
+### M2.1 — Vercel production 與跨裝置驗收
+由 ChatGPT-first 直接處理；若 Vercel 需要建立新專案或 GitHub 綁定而目前連接器無法建立，才需要使用者在 Vercel 介面完成一次性連接。
+
+### Acceptance
+- [ ] 建立／綁定 Vercel 專案 `ltjh-it7-sem1`
+- [ ] production deployment READY
+- [ ] 正式網址可直接開啟首頁與 hash 課程路由
+- [ ] 375px 手機版無水平捲動
+- [ ] 桌機／投影版章節導覽可用
+- [ ] checklist、重新整理保存與重設進度皆正常
 
 ## Next
 
