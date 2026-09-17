@@ -223,3 +223,50 @@
   .timeline-question, .factcheck-flow, .algorithm-steps { display: grid; grid-template-columns: 1fr; }
   .timeline-question b, .factcheck-flow b, .algorithm-steps b { transform: rotate(90deg); justify-self: center; }
 }
+
+
+.handbook-extensions { margin: 34px 0; }
+.handbook-extensions h2 { font-size: 21px; margin-bottom: 8px; }
+.handbook-extensions > p { font-size: 12px; color: #68766d; line-height: 1.9; margin-bottom: 16px; }
+.extension-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.extension-grid > a { min-width: 0; display: block; border: 1px solid #dce3df; border-radius: 10px; background: #fff; padding: 18px; }
+.extension-grid span { display: inline-block; padding: 4px 7px; border-radius: 999px; background: #edf4e8; color: #3c6248; font-size: 9px; font-weight: 800; }
+.extension-grid h3 { font-size: 15px; margin: 9px 0 6px; }
+.extension-grid p { font-size: 11px; color: #68766d; line-height: 1.75; margin-bottom: 10px; }
+.extension-grid b { font-size: 10px; color: #315e45; }
+
+.supplement-page { padding-bottom: 36px; }
+.supplement-hero { margin: 14px 0 24px; padding: 28px; border-radius: 12px; border: 1px solid #d8e2d4; background: linear-gradient(135deg, #eef5e9, #f8fbf6); }
+.supplement-hero.practice { background: linear-gradient(135deg, #f7f2e8, #fbf8f1); border-color: #e6dcc8; }
+.supplement-hero .eyebrow { color: #55734d; margin-bottom: 8px; }
+.supplement-hero h1 { font-size: clamp(27px, 4vw, 40px); margin: 0 0 10px; }
+.supplement-hero p { max-width: 850px; color: #5e6d63; font-size: 13px; line-height: 1.9; }
+.supplement-section { margin: 22px 0; padding: 22px; border: 1px solid #dfe5e0; border-radius: 10px; background: #fff; }
+.supplement-section h2 { font-size: 18px; margin-bottom: 14px; }
+.appinventor-ui { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.appinventor-ui > div, .debug-table > div, .practice-cards > article { min-width: 0; border: 1px solid #dfe4e1; border-radius: 8px; padding: 13px; background: #f9fbf9; }
+.appinventor-ui strong, .debug-table strong, .practice-cards strong { display: block; margin-bottom: 6px; font-size: 12px; color: #315947; }
+.appinventor-ui span, .debug-table span, .practice-cards p { font-size: 10.5px; line-height: 1.75; color: #66746c; }
+.supplement-steps { margin: 0; padding-left: 22px; }
+.supplement-steps li { margin: 8px 0; padding-left: 4px; font-size: 12px; line-height: 1.8; }
+.supplement-projects { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.supplement-projects article { min-width: 0; border: 1px solid #dde4df; border-radius: 9px; padding: 14px; background: #fafcfa; }
+.supplement-projects article > span { font: 700 9px 'Space Mono', monospace; color: #6b8076; }
+.supplement-projects h3 { font-size: 13px; margin: 6px 0; }
+.supplement-projects p { font-size: 10.5px; line-height: 1.75; color: #66736c; margin-bottom: 8px; }
+.supplement-projects code { display: block; border-radius: 5px; padding: 7px 8px; background: #eef3ef; color: #315947; font-size: 9.5px; white-space: normal; overflow-wrap: anywhere; }
+.debug-table, .practice-cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+.treasure-rule, .csv-flow { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.treasure-rule span, .csv-flow span { padding: 7px 9px; border-radius: 6px; border: 1px solid #dfe5e1; background: #f8faf8; font-size: 10.5px; }
+.treasure-rule b, .csv-flow b { color: #748a7f; }
+.source-callout { margin-top: 18px; padding: 14px 16px; border-radius: 8px; border: 1px solid #e4dac5; background: #fff9ed; color: #665a44; font-size: 11px; line-height: 1.8; }
+
+@media (max-width: 800px) {
+  .appinventor-ui { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 540px) {
+  .extension-grid, .appinventor-ui, .supplement-projects, .debug-table, .practice-cards { grid-template-columns: 1fr; }
+  .supplement-hero, .supplement-section { padding: 18px 15px; }
+  .treasure-rule, .csv-flow { display: grid; grid-template-columns: 1fr; }
+  .treasure-rule b, .csv-flow b { transform: rotate(90deg); justify-self: center; }
+}
