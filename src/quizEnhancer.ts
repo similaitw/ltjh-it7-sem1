@@ -17,7 +17,7 @@ import {
   type StudentRecordBundle,
 } from './quizProgress';
 
-let activeQuiz: Record<string, QuizQuestion[]> = {};
+const activeQuiz: Record<string, QuizQuestion[]> = {};
 
 function storageOrNull() {
   try { return window.localStorage; } catch { return null; }
