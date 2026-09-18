@@ -174,7 +174,7 @@ function bindQuizEvents() {
     event.preventDefault();
     const storage = storageOrNull();
     if (!storage) return;
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(event.currentTarget as HTMLFormElement);
     const profile = {
       className: String(data.get('className') ?? ''),
       seat: String(data.get('seat') ?? ''),
@@ -185,7 +185,7 @@ function bindQuizEvents() {
   });
   section.querySelector<HTMLFormElement>('#lesson-quiz-form')?.addEventListener('submit', (event) => {
     event.preventDefault();
-    submitQuiz(event.currentTarget, lessonId);
+    submitQuiz(event.currentTarget as HTMLFormElement, lessonId);
   });
 }
 
