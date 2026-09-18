@@ -8,10 +8,11 @@
 - 完整自學講義：https://ltjh-it7-sem1.vercel.app/#/handbook
 - App Inventor 延伸：https://ltjh-it7-sem1.vercel.app/#/appendix/app-inventor
 - 教用習作練習室：https://ltjh-it7-sem1.vercel.app/#/practice-lab
+- 教師管理頁：https://ltjh-it7-sem1.vercel.app/#/teacher
 - Vercel 專案：`ltjh-it7-sem1`
 - GitHub：`similaitw/ltjh-it7-sem1`
 
-網站採 hash 路由，可直接開啟指定單元；學生進度只儲存在目前瀏覽器的 localStorage，不會跨裝置同步。
+網站採 hash 路由，可直接開啟指定單元；目前課堂 checklist、學生資料與小測驗紀錄都儲存在目前瀏覽器的 localStorage，不會跨裝置同步。
 
 ## 六冊 PDF 與完整自學講義
 
@@ -44,6 +45,18 @@
 
 所有課堂任務都設計為課堂內完成，不安排回家作業或課後繳交。
 
+## 單元小測驗與通過紀錄
+
+10 個正式單元各有 10 題教材對齊題庫，共 100 題。每次測驗隨機抽 5 題，答對 4 題（80%）即通過；可重複挑戰，網站會記錄每次分數、最高分、挑戰次數、通過與否，以及需要回頭複習的概念。
+
+原本的三項 checklist 現在只代表「課堂任務完成」，不再等同「理解通過」。理解狀態以本節小測驗另外記錄。學生第一次測驗需填班級、座號、姓名，目前這些資料與測驗紀錄都只存在該瀏覽器的 localStorage。
+
+## 教師管理頁
+
+`/#/teacher` 已有第一版教師管理功能。學生可把自己的測驗紀錄匯出成 JSON；教師頁可一次匯入多位學生的紀錄，依班級顯示 10 個單元的通過矩陣、最高分、挑戰次數與各單元通過人數。
+
+這一版是「本機匯入 MVP」：姓名與成績不會自動上傳到公開服務。下一階段 M3.2 會加入班級碼、雲端同步與教師驗證，讓教師不必人工收集 JSON。
+
 ## 本機啟動
 
 需要 Node.js 22.12 以上（建議 Node.js 24）與 npm。
@@ -65,7 +78,7 @@ npm run preview      # 本機預覽 production build
 
 ## 學習進度
 
-所有檢核項目勾選後該節才計為完成。進度使用 localStorage，鍵為 `ltjh-it7-sem1:progress:v1`，只保存在同一瀏覽器、同一網站來源。首頁「重設進度」需在對話框確認，僅清除本站紀錄。若瀏覽器禁止儲存或空間不足，畫面會提示，仍可在本次使用期間勾選。
+三項課堂 checklist 只記錄「課堂任務完成」；小測驗另外記錄「理解通過」。課堂進度使用 localStorage 鍵 `ltjh-it7-sem1:progress:v1`，測驗紀錄使用 `ltjh-it7-sem1:quiz-results:v1`，學生班級／座號／姓名使用 `ltjh-it7-sem1:student-profile:v1`。這些資料目前只保存在同一瀏覽器、同一網站來源。
 
 本站不收集帳號、作品或個人資料。Scratch 與 Google 工具連結會開啟新分頁；Google 協作活動需使用老師安排的帳號與權限。
 
@@ -81,6 +94,7 @@ npm run preview      # 本機預覽 production build
 - 完整講義：`/#/handbook`
 - App Inventor 附錄：`/#/appendix/app-inventor`
 - 教用習作練習室：`/#/practice-lab`
+- 教師管理：`/#/teacher`
 - 單元：`/#/lesson/2-1`
 
 ## 維護流程
@@ -94,12 +108,18 @@ npm run preview      # 本機預覽 production build
 - `src/supplementPages.ts`：App Inventor 附錄與教用習作實作練習頁
 - `src/handbook.css`：自學講義版面與手機響應式樣式
 - `src/main.ts`：首頁、課程頁、流程圖、導覽與互動
-- `src/progress.ts`：進度驗證、保存、重設與完成判定
+- `src/progress.ts`：課堂 checklist 進度驗證、保存與重設
+- `src/quizData.ts`：10 單元共 100 題教材對齊題庫與隨機抽題規則
+- `src/quizProgress.ts`：學生資料、測驗嘗試、最高分、通過狀態與匯出／匯入資料模型
+- `src/quizEnhancer.ts`：單元小測驗、學生紀錄匯出與教師管理頁
+- `src/quiz.css`：小測驗與教師矩陣響應式樣式
 - `src/style.css`：主站視覺樣式與響應式版面
 - `tests/selfStudy.test.ts`：六冊 272 頁來源與十單元自學講義完整性測試
 - `tests/lessonVisuals.test.ts`：10 個單元原生圖解與關鍵內容測試
 - `tests/supplementPages.test.ts`：附錄與教用習作自學頁測試
-- `tests/progress.test.ts`：內容與進度單元測試
+- `tests/progress.test.ts`：內容與課堂 checklist 進度單元測試
+- `tests/quiz.test.ts`：100 題題庫、抽題、通過門檻與測驗紀錄測試
+- `tests/quizNavigation.test.ts`：10 單元小測驗與教師管理頁 DOM 測試
 - `tests/navigation.test.ts`：十節課程導覽、勾選、重設、例外與可及性互動測試
 
 建議實機驗收：以 375px 手機寬度與教室桌機／投影畫面逐節查看；勾選後重新整理，確認進度保留；測試重設取消與確認，以及鍵盤 Tab 操作和瀏覽器上一頁。
