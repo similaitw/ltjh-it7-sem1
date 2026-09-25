@@ -70,6 +70,55 @@ function flowchart() {
   return `<figure class="flowchart"><figcaption>熱狗製作流程圖示例</figcaption><svg viewBox="0 0 560 500" role="img" aria-label="熱狗製作流程圖：開始，準備材料，判斷材料是否齊全；若否則補齊材料後再加熱熱狗，若是則直接加熱熱狗，接著組合麵包與配料，輸出完成的熱狗，最後結束。"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" /></marker></defs><g class="flow-lines" marker-end="url(#arrowhead)"><path d="M280 46V74"/><path d="M280 116V142"/><path d="M280 226V252"/><path d="M196 184H100V252"/><path d="M180 275H200"/><path d="M280 298V324"/><path d="M280 370V394"/><path d="M280 436V454"/></g><rect class="flow-terminal" x="220" y="8" width="120" height="38" rx="19"/><rect class="flow-process" x="190" y="74" width="180" height="42" rx="3"/><path class="flow-decision" d="M280 142L364 184L280 226L196 184Z"/><rect class="flow-process" x="20" y="252" width="160" height="46" rx="3"/><rect class="flow-process" x="200" y="252" width="160" height="46" rx="3"/><rect class="flow-process" x="190" y="324" width="180" height="46" rx="3"/><path class="flow-io" d="M205 394H365L351 436H191Z"/><rect class="flow-terminal" x="220" y="454" width="120" height="38" rx="19"/><g class="flow-text"><text x="280" y="33">開始</text><text x="280" y="101">準備材料</text><text x="280" y="190">材料齊全？</text><text x="100" y="280">補齊材料</text><text x="280" y="280">加熱熱狗</text><text x="280" y="352">組合麵包與配料</text><text x="280" y="421">輸出完成熱狗</text><text x="280" y="479">結束</text><text x="154" y="174">否</text><text x="304" y="242">是</text></g></svg></figure>`;
 }
 
+function drawioPractice() {
+  return `<section class="drawio-section" aria-labelledby="drawio-title">
+    <p class="eyebrow">DIGITAL FLOWCHART</p>
+    <h2 id="drawio-title">手寫完成後：用 draw.io 重畫流程圖</h2>
+    <p class="drawio-intro">前面的手寫流程圖保留。接著把同一張流程圖搬到 draw.io，練習真正的「連接器」：方塊移動時，箭頭會跟著重新調整；再把圖形與線條的樣式設成一致。</p>
+    <div class="drawio-grid">
+      <article class="drawio-card">
+        <span class="drawio-step">01</span>
+        <h3>建立基本圖形</h3>
+        <p>開啟空白圖，依手寫稿放入開始／結束、處理、輸入／輸出與判斷圖形，再輸入文字。先把流程排好，不急著調顏色。</p>
+      </article>
+      <article class="drawio-card">
+        <span class="drawio-step">02</span>
+        <h3>用 Connector 連接</h3>
+        <p>滑鼠移到方塊上，從出現的方向箭頭拖到下一個方塊。不要另外畫一條普通線；流程圖的箭頭要真的「連到方塊」。</p>
+      </article>
+      <article class="drawio-card">
+        <span class="drawio-step">03</span>
+        <h3>讓箭頭自動跟著移動</h3>
+        <p>拖到目標方塊時，等整個方塊外框亮起再放開，建立 Floating Connector。之後移動方塊，連接線會沿著圖形邊緣自動調整位置。</p>
+      </article>
+      <article class="drawio-card">
+        <span class="drawio-step">04</span>
+        <h3>統一直角折線</h3>
+        <p>選取連接線，在 Style 的 Waypoints 選擇直角（Orthogonal）路徑。流程以由上往下為主，盡量避免交叉與不必要的手動轉折點。</p>
+      </article>
+      <article class="drawio-card">
+        <span class="drawio-step">05</span>
+        <h3>設定圖形預設樣式</h3>
+        <p>先把一個圖形的填色、外框、線寬與文字調好，再按 <strong>Set as Default Style</strong>。之後新增的圖形就能保持一致。</p>
+      </article>
+      <article class="drawio-card">
+        <span class="drawio-step">06</span>
+        <h3>線條也要另外設定</h3>
+        <p>圖形與 Connector 的預設樣式是分開的。選好一條標準箭頭後，也按一次 <strong>Set as Default Style</strong>；已畫好的物件可用 Copy Style／Paste Style 統一。</p>
+      </article>
+    </div>
+    <div class="drawio-test">
+      <div>
+        <strong>移動測試</strong>
+        <p>把「加熱熱狗」拖到右邊。如果箭頭仍然連著方塊並自動改變路徑，就成功了；如果線留在原地，就重新用 Connector 連接。</p>
+      </div>
+      <span aria-hidden="true">↔</span>
+    </div>
+    <div class="drawio-note"><strong>記住 3 句：</strong>不是畫線，是連接方塊；整個方塊亮起再放；方塊與箭頭的 Default Style 要分開設定。</div>
+    <a class="resource-link drawio-link" href="https://app.diagrams.net/" target="_blank" rel="noopener noreferrer">開啟 draw.io ${arrow}<span class="sr-only">（在新分頁開啟）</span></a>
+  </section>`;
+}
+
 function escapeLine(line: string) {
   return line.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
@@ -84,6 +133,7 @@ function lessonPage(lesson: Lesson) {
     <section class="concept-section"><h2><span>02</span> 重點教學</h2><div class="concept-grid">${lesson.concepts.map((concept) => `<div><h3>${concept.title}</h3><p>${concept.text}</p></div>`).join('')}</div></section>
     <section class="demo-section"><h2><span>03</span> 示範／例子</h2>${lesson.id === '2-1' ? flowchart() : ''}<div class="example"><h3>${lesson.example.title}</h3><pre>${lesson.example.lines.map(escapeLine).join('\n')}</pre></div></section>
     <section class="activity-section"><p class="eyebrow">CLASSROOM TASK</p><h2><span>04</span> 課堂任務：${lesson.activity}</h2><ol>${lesson.steps.map((step) => `<li>${step}</li>`).join('')}</ol>${lesson.resource ? `<a class="resource-link" href="${lesson.resource.url}" target="_blank" rel="noopener noreferrer">${lesson.resource.label} ${arrow}<span class="sr-only">（在新分頁開啟）</span></a>` : ''}</section>
+    ${lesson.id === '2-1' ? drawioPractice() : ''}
     <section class="completion-section"><h2><span>05</span> 完成條件</h2><p>${lesson.deliverable}</p><div class="checklist-heading"><h3><span class="section-number">06</span> 課堂檢核</h3><span id="checklist-count">${checkedCount(progress, lesson)} / ${lesson.checklist.length} 項</span></div><p class="checklist-hint">確認自己在這堂課已做到，再勾選；三項都完成表示課堂任務完成，理解是否通過由本節小測驗另外記錄。</p><div class="checklist">${lesson.checklist.map((item, i) => `<label><input type="checkbox" data-lesson="${lesson.id}" data-index="${i}" ${progress[lesson.id]?.[i] ? 'checked' : ''}><span>${item}</span></label>`).join('')}</div><p class="save-status" role="status">${storage ? '勾選後會自動儲存在此瀏覽器。' : '瀏覽器無法儲存，進度僅在本次開啟期間保留。'}</p></section>
     <nav class="lesson-pagination" aria-label="前後小節">${index > 0 ? `<a href="${lessonLink(lessons[index - 1])}"><small>← 上一節</small>${lessons[index - 1].title}</a>` : '<a href="#/"><small>← 學習地圖</small>回到課程總覽</a>'}${index < lessons.length - 1 ? `<a href="${lessonLink(lessons[index + 1])}"><small>下一節 →</small>${lessons[index + 1].title}</a>` : '<a href="#/"><small>完成總覽 →</small>查看我的進度</a>'}</nav>
   </article>`;
