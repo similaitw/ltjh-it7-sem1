@@ -66,6 +66,48 @@ function home() {
     <section class="end-note"><span aria-hidden="true">✦</span><div><h2>理解概念、動手操作、當堂檢核。</h2><p>每個單元都保留可在課堂內完成的任務與完成條件，不需要另外帶回去繳交。</p></div></section>`;
 }
 
+function flowSymbolGuide() {
+  return `<div class="flow-symbol-guide" aria-label="七個基本流程圖符號">
+    <div class="flow-symbol-heading">
+      <div>
+        <p class="eyebrow">7 BASIC SYMBOLS</p>
+        <h3>七個基本流程圖符號</h3>
+      </div>
+      <p>依翰林第一冊 2-1：開始／結束、處理、流程方向、輸入／輸出、決策、迴圈、連接。</p>
+    </div>
+    <div class="flow-symbol-grid">
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="開始或結束：圓角長方形"><rect x="25" y="22" width="100" height="38" rx="19"/></svg>
+        <h4>開始／結束</h4><p>流程圖開始或結束</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="處理：長方形"><rect x="25" y="20" width="100" height="42"/></svg>
+        <h4>處理</h4><p>處理一項工作</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="流程方向：箭頭"><defs><marker id="symbol-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6"/></marker></defs><path class="symbol-arrow-line" d="M30 41H120" marker-end="url(#symbol-arrow)"/></svg>
+        <h4>流程方向</h4><p>流程進行的方向</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="輸入或輸出：平行四邊形"><path d="M36 20H126L114 62H24Z"/></svg>
+        <h4>輸入／輸出</h4><p>進行資料輸入或輸出</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="決策：菱形"><path d="M75 12L128 41L75 70L22 41Z"/></svg>
+        <h4>決策</h4><p>依條件結果決定流向</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="迴圈：六角形"><path d="M38 17H112L132 41L112 65H38L18 41Z"/></svg>
+        <h4>迴圈</h4><p>重複執行直到條件達成</p>
+      </article>
+      <article class="flow-symbol-card">
+        <svg viewBox="0 0 150 82" role="img" aria-label="連接：圓形"><circle cx="75" cy="41" r="20"/></svg>
+        <h4>連接</h4><p>流程的連接點</p>
+      </article>
+    </div>
+  </div>`;
+}
+
 function flowchart() {
   return `<figure class="flowchart"><figcaption>熱狗製作流程圖示例</figcaption><svg viewBox="0 0 560 500" role="img" aria-label="熱狗製作流程圖：開始，準備材料，判斷材料是否齊全；若否則補齊材料後再加熱熱狗，若是則直接加熱熱狗，接著組合麵包與配料，輸出完成的熱狗，最後結束。"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="currentColor" /></marker></defs><g class="flow-lines" marker-end="url(#arrowhead)"><path d="M280 46V74"/><path d="M280 116V142"/><path d="M280 226V252"/><path d="M196 184H100V252"/><path d="M180 275H200"/><path d="M280 298V324"/><path d="M280 370V394"/><path d="M280 436V454"/></g><rect class="flow-terminal" x="220" y="8" width="120" height="38" rx="19"/><rect class="flow-process" x="190" y="74" width="180" height="42" rx="3"/><path class="flow-decision" d="M280 142L364 184L280 226L196 184Z"/><rect class="flow-process" x="20" y="252" width="160" height="46" rx="3"/><rect class="flow-process" x="200" y="252" width="160" height="46" rx="3"/><rect class="flow-process" x="190" y="324" width="180" height="46" rx="3"/><path class="flow-io" d="M205 394H365L351 436H191Z"/><rect class="flow-terminal" x="220" y="454" width="120" height="38" rx="19"/><g class="flow-text"><text x="280" y="33">開始</text><text x="280" y="101">準備材料</text><text x="280" y="190">材料齊全？</text><text x="100" y="280">補齊材料</text><text x="280" y="280">加熱熱狗</text><text x="280" y="352">組合麵包與配料</text><text x="280" y="421">輸出完成熱狗</text><text x="280" y="479">結束</text><text x="154" y="174">否</text><text x="304" y="242">是</text></g></svg></figure>`;
 }
@@ -79,7 +121,7 @@ function drawioPractice() {
       <article class="drawio-card">
         <span class="drawio-step">01</span>
         <h3>建立基本圖形</h3>
-        <p>開啟空白圖，依手寫稿放入開始／結束、處理、輸入／輸出與判斷圖形，再輸入文字。先把流程排好，不急著調顏色。</p>
+        <p>開啟空白圖，依手寫稿使用本冊七個基本符號：開始／結束、處理、流程方向、輸入／輸出、決策、迴圈、連接。依流程需要選用，不是每張圖都一定要七種全用，再輸入文字。先把流程排好，不急著調顏色。</p>
       </article>
       <article class="drawio-card">
         <span class="drawio-step">02</span>
@@ -131,7 +173,7 @@ function lessonPage(lesson: Lesson) {
     <div class="lesson-header"><p class="eyebrow">CHAPTER 0${chapter.id} ／ ${chapter.title}</p><div class="lesson-tag">課堂單元 ${lesson.id} <span>· ${lesson.time}</span></div><h1>${lesson.title}</h1><p>${lesson.summary}</p></div>
     <section class="objective-section"><h2><span>01</span> 本節目標</h2><ul class="objective-list">${lesson.objectives.map((objective) => `<li>${objective}</li>`).join('')}</ul></section>
     <section class="concept-section"><h2><span>02</span> 重點教學</h2><div class="concept-grid">${lesson.concepts.map((concept) => `<div><h3>${concept.title}</h3><p>${concept.text}</p></div>`).join('')}</div></section>
-    <section class="demo-section"><h2><span>03</span> 示範／例子</h2>${lesson.id === '2-1' ? flowchart() : ''}<div class="example"><h3>${lesson.example.title}</h3><pre>${lesson.example.lines.map(escapeLine).join('\n')}</pre></div></section>
+    <section class="demo-section"><h2><span>03</span> 示範／例子</h2>${lesson.id === '2-1' ? flowSymbolGuide() + flowchart() : ''}<div class="example"><h3>${lesson.example.title}</h3><pre>${lesson.example.lines.map(escapeLine).join('\n')}</pre></div></section>
     <section class="activity-section"><p class="eyebrow">CLASSROOM TASK</p><h2><span>04</span> 課堂任務：${lesson.activity}</h2><ol>${lesson.steps.map((step) => `<li>${step}</li>`).join('')}</ol>${lesson.resource ? `<a class="resource-link" href="${lesson.resource.url}" target="_blank" rel="noopener noreferrer">${lesson.resource.label} ${arrow}<span class="sr-only">（在新分頁開啟）</span></a>` : ''}</section>
     ${lesson.id === '2-1' ? drawioPractice() : ''}
     <section class="completion-section"><h2><span>05</span> 完成條件</h2><p>${lesson.deliverable}</p><div class="checklist-heading"><h3><span class="section-number">06</span> 課堂檢核</h3><span id="checklist-count">${checkedCount(progress, lesson)} / ${lesson.checklist.length} 項</span></div><p class="checklist-hint">確認自己在這堂課已做到，再勾選；三項都完成表示課堂任務完成，理解是否通過由本節小測驗另外記錄。</p><div class="checklist">${lesson.checklist.map((item, i) => `<label><input type="checkbox" data-lesson="${lesson.id}" data-index="${i}" ${progress[lesson.id]?.[i] ? 'checked' : ''}><span>${item}</span></label>`).join('')}</div><p class="save-status" role="status">${storage ? '勾選後會自動儲存在此瀏覽器。' : '瀏覽器無法儲存，進度僅在本次開啟期間保留。'}</p></section>
