@@ -184,6 +184,19 @@ footer span { font-size: 10px; }
 .lesson-pagination a { font-size: 13px; line-height: 1.8; min-width: 0; }
 .lesson-pagination a:last-child { text-align: right; }
 .lesson-pagination small { display: block; font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.flow-symbol-guide { margin-top: 24px; padding: 22px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+.flow-symbol-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 18px; }
+.flow-symbol-heading .eyebrow { color: var(--accent); margin-bottom: 6px; }
+.flow-symbol-heading h3 { font-size: 16px; }
+.flow-symbol-heading > p { max-width: 520px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.flow-symbol-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.flow-symbol-card { min-width: 0; padding: 12px 12px 14px; border: 1px solid #e7e5df; border-radius: 8px; background: #fcfcf9; text-align: center; }
+.flow-symbol-card svg { width: 100%; height: 72px; display: block; }
+.flow-symbol-card svg rect, .flow-symbol-card svg path:not(.symbol-arrow-line), .flow-symbol-card svg circle { fill: var(--tint); stroke: var(--accent); stroke-width: 2; }
+.flow-symbol-card .symbol-arrow-line { fill: none; stroke: var(--accent); stroke-width: 2; }
+.flow-symbol-card marker path { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+.flow-symbol-card h4 { font-size: 13px; margin: 3px 0 5px; }
+.flow-symbol-card p { font-size: 11px; line-height: 1.6; color: var(--muted); }
 .flowchart { margin: 24px 0 0; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: white; }
 .flowchart figcaption { font-size: 13px; font-weight: 700; margin-bottom: 15px; }
 .flowchart svg { display: block; width: 100%; max-height: 430px; color: #385247; }
@@ -316,6 +329,12 @@ dialog p { font-size: 14px; line-height: 1.9; margin: 14px 0 24px; }
   .back-link { margin-bottom: 22px; }
   .lesson-header h1 { font-size: 29px; overflow-wrap: anywhere; }
   .lesson-header > p:last-child { font-size: 14px; }
+  .flow-symbol-heading { display: block; }
+  .flow-symbol-heading > p { margin-top: 9px; }
+  .flow-symbol-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow-symbol-guide { padding: 17px 14px; }
+  .flow-symbol-card { padding: 8px 7px 11px; }
+  .flow-symbol-card svg { height: 62px; }
   .drawio-grid { grid-template-columns: 1fr; }
   .drawio-section { padding: 21px 18px; }
   .drawio-card { padding: 18px 16px 18px 48px; }
