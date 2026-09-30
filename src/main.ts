@@ -20,6 +20,7 @@ const nextLesson = () => lessons.find((lesson) => !isComplete(progress, lesson))
 
 function shell(content: string) {
   return `<a class="skip-link" href="#main">跳至主要內容</a>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
     <header class="site-header">
       <a class="brand" href="#/" aria-label="資訊探險室首頁"><span class="brand-mark" aria-hidden="true">it<span>↗</span></span><span>資訊探險室<small>INFORMATION TECHNOLOGY LAB</small></span></a>
       <span class="semester">七年級 <span>／</span> 上學期</span>
@@ -55,11 +56,33 @@ function chapterSection(chapter: typeof chapters[number]) {
   </section>`;
 }
 
+function learningJourney() {
+  return `<section class="learning-journey" aria-labelledby="journey-title">
+    <div class="journey-intro">
+      <div><p class="eyebrow">LEARNING JOURNEY</p><h2 id="journey-title">三段旅程，把「會用」變成「會想、會做」。</h2></div>
+      <p>從理解科技、設計演算法，到把資料整理成能溝通的成果。每一章都留下實作與檢核，不只看完，而是真的完成。</p>
+    </div>
+    <div class="journey-grid">
+      ${chapters.map((chapter, index) => {
+        const done = chapter.lessons.filter((lesson) => isComplete(progress, lesson)).length;
+        const percent = Math.round((done / chapter.lessons.length) * 100);
+        return `<a class="journey-card ${chapter.theme}" href="#/chapter/${chapter.id}">
+          <div class="journey-card-top"><span>0${chapter.id}</span><small>${String(index + 1).padStart(2, '0')} / 03</small></div>
+          <div><p>${chapter.subtitle}</p><h3>${chapter.title}</h3></div>
+          <div class="journey-progress"><i style="--journey-progress:${percent}%"></i></div>
+          <div class="journey-card-bottom"><span>${done} / ${chapter.lessons.length} 節完成</span><b aria-hidden="true">↗</b></div>
+        </a>`;
+      }).join('')}
+    </div>
+  </section>`;
+}
+
 function home() {
   const completed = completeCount();
   const started = Object.values(progress).some((items) => items.some(Boolean));
   return `<div class="page-kicker"><span>七上資訊科技 · 學習地圖</span><span>115 學年度 · 上學期</span></div>
     <section class="hero"><div class="hero-copy"><p class="eyebrow">HELLO, DIGITAL WORLD.</p><h1>從生活出發，<br>把問題<span>做出解法。</span></h1><p class="hero-description">先認識資訊科技，再用 Scratch 練習程式思維，最後完成園遊會資料處理專題。</p><a class="primary" href="${lessonLink(nextLesson())}">${completed === lessons.length ? '再次瀏覽課程' : started ? '繼續學習' : '開始第一節'} <span aria-hidden="true">→</span></a><div class="hero-meta"><span>03 大章</span><span>10 個課堂單元</span><span>不安排課後繳交</span></div></div>${heroArt()}</section>
+    ${learningJourney()}
     <section class="progress-panel" aria-label="學習進度"><div><span class="progress-symbol" aria-hidden="true">⚑</span><div><h2>我的課堂進度 <strong>${completed}<small> / 10 節</small></strong></h2><p>${completed === lessons.length ? '全部完成！可以回頭複習任一單元。' : '每節三項檢核代表課堂任務完成；理解通過另看單元小測驗。'}</p></div></div><div class="progress-right"><progress max="10" value="${completed}" aria-label="已完成小節">${completed} / 10</progress><div><span>${storage ? '進度儲存在此瀏覽器' : '目前僅保留本次進度'}</span><button class="text-button" id="reset-progress">重設進度</button></div></div></section>
     <div class="section-intro"><h2>本學期課程</h2><span>依章節進行，也可直接開啟指定單元 <span aria-hidden="true">↓</span></span></div>
     ${chapters.map(chapterSection).join('')}
@@ -181,6 +204,67 @@ function lessonPage(lesson: Lesson) {
   </article>`;
 }
 
+let experienceBound = false;
+let revealObserver: IntersectionObserver | null = null;
+
+function updateScrollProgress() {
+  const bar = document.querySelector<HTMLElement>('#scroll-progress-bar');
+  if (!bar) return;
+  const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  const ratio = Math.min(1, Math.max(0, window.scrollY / max));
+  bar.style.transform = `scaleX(${ratio})`;
+}
+
+function observeRevealTargets() {
+  const targets = document.querySelectorAll<HTMLElement>('.hero, .learning-journey, .progress-panel, .chapter-section, .lesson-page > section, .handbook-home-card, .self-study, .quiz-section');
+  targets.forEach((target) => {
+    if (target.dataset.revealReady) return;
+    target.dataset.revealReady = 'true';
+    target.classList.add('reveal-target');
+    if (revealObserver) revealObserver.observe(target);
+    else target.classList.add('is-visible');
+  });
+}
+
+function setupAwardExperience() {
+  document.documentElement.classList.add('experience-ready');
+  if (!experienceBound) {
+    experienceBound = true;
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('resize', updateScrollProgress, { passive: true });
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointer = window.matchMedia('(pointer: fine)');
+    window.addEventListener('pointermove', (event) => {
+      if (reduceMotion.matches || !finePointer.matches) return;
+      const art = document.querySelector<HTMLElement>('.hero-art');
+      if (!art) return;
+      const rect = art.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+      const y = (event.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+      art.style.setProperty('--mx', `${(x * 10).toFixed(2)}px`);
+      art.style.setProperty('--my', `${(y * 8).toFixed(2)}px`);
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).classList.add('is-visible');
+          revealObserver?.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -7% 0px' });
+    }
+
+    const mainEl = document.querySelector('#main');
+    if (mainEl && 'MutationObserver' in window) {
+      new MutationObserver(() => observeRevealTargets()).observe(mainEl, { childList: true, subtree: true });
+    }
+  }
+  updateScrollProgress();
+  observeRevealTargets();
+}
+
 function notify(message: string) {
   document.querySelector('.toast')!.textContent = message;
 }
@@ -229,6 +313,7 @@ function render(focus = false) {
   app.innerHTML = shell(lesson ? lessonPage(lesson) : valid ? home() : '<section class="not-found"><p class="eyebrow">404 / LOST IN EXPLORATION</p><h1>這個課堂單元還不存在</h1><p>回到課程總覽，選擇一個單元繼續。</p><a class="primary" href="#/">回到課程總覽 →</a></section>');
   document.title = `${lesson ? lesson.title : '學習地圖'}｜資訊探險室・七上資訊科技`;
   bindEvents();
+  setupAwardExperience();
   if (focus) {
     document.querySelector<HTMLElement>('#main')?.focus({ preventScroll: true });
     window.scrollTo(0, 0);
