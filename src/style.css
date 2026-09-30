@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
-
 :root {
   font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
   color: #263c36;
@@ -625,4 +623,18 @@ button, .primary, .resource-link, .lesson-card, .journey-card { -webkit-tap-high
   .experience-ready .reveal-target:not(.is-visible),
   .experience-ready .reveal-target.is-visible { opacity:1 !important; transform:none !important; }
   .code-window, .coordinate, .journey-card, .lesson-card, .flow-symbol-card, .brand-mark { transition:none !important; transform:none !important; }
+}
+
+
+/* ACCESSIBILITY HARDENING / 2026 */
+.overview, .nav-lesson, .text-button { min-height: 44px; }
+.text-button { display: inline-flex; align-items: center; }
+@media (prefers-contrast: more) {
+  :root { --line: #aeb9b1; --muted: #46534b; }
+  .lesson-card, .journey-card, .concept-grid > div, .flow-symbol-card { border-width: 2px; }
+  .primary { outline: 2px solid currentColor; outline-offset: 2px; }
+}
+@media (forced-colors: active) {
+  .scroll-progress span, .journey-progress i { background: CanvasText; }
+  .hero::before, .hero::after, .journey-card::after { display: none; }
 }
