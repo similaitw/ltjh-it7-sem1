@@ -476,7 +476,7 @@ body {
   transition: transform .18s ease-out;
 }
 .coordinate {
-  transform: translate3d(calc(var(--mx,0) * -.55), calc(var(--my,0) * -.55), 0) rotate(8deg);
+  transform: translate3d(var(--imx,0), var(--imy,0), 0) rotate(8deg);
   border-radius: 12px; box-shadow: 8px 10px 30px rgba(53,82,53,.12);
   transition: transform .2s ease-out;
 }
