@@ -240,10 +240,16 @@ function setupAwardExperience() {
       const art = document.querySelector<HTMLElement>('.hero-art');
       if (!art) return;
       const rect = art.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-      const y = (event.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-      art.style.setProperty('--mx', `${(x * 10).toFixed(2)}px`);
-      art.style.setProperty('--my', `${(y * 8).toFixed(2)}px`);
+      const rawX = (event.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+      const rawY = (event.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+      const x = Math.max(-0.5, Math.min(0.5, rawX));
+      const y = Math.max(-0.5, Math.min(0.5, rawY));
+      const mx = x * 10;
+      const my = y * 8;
+      art.style.setProperty('--mx', `${mx.toFixed(2)}px`);
+      art.style.setProperty('--my', `${my.toFixed(2)}px`);
+      art.style.setProperty('--imx', `${(-mx * 0.55).toFixed(2)}px`);
+      art.style.setProperty('--imy', `${(-my * 0.55).toFixed(2)}px`);
     }, { passive: true });
 
     if ('IntersectionObserver' in window) {
